@@ -14,24 +14,25 @@ La percepción sobre la inmigración es un tema de alta relevancia en las socied
 ```{r}
 library(dplyr)
 library(ggplot2)
+library(haven)
 
-datos <- readRDS("../procesamiento/chile_procesado.rds")
-
-
-table(datos$percepcion_inmigracion)
+datos <- readRDS("procesamiento/datos_procesado.rds")
 
 
-ggplot(datos, aes(x = percepcion_inmigracion)) +
+table(as_factor(datos$percepcion_inmigracion))
+
+
+ggplot(datos, aes(x = as_factor(percepcion_inmigracion))) +
   geom_bar(fill = "#5B9BD5") +
   theme_minimal() +
   labs(title = "Percepción sobre inmigración", x = "Percepción", y = "Frecuencia")
 
 
-table(datos$sexo)
+
+table(as_factor(datos$sexo))
 
 
-table(datos$region)
-
+table(as_factor(datos$region))
 
 hist(datos$edad, main = "Distribución de la edad", xlab = "Edad", col = "#F4A261")
 ```
@@ -40,13 +41,23 @@ hist(datos$edad, main = "Distribución de la edad", xlab = "Edad", col = "#F4A26
 
 ```{r}
 
+
+library(forcats)
+
+datos <- datos %>%
+  mutate(
+    percepcion_inmigracion = as_factor(percepcion_inmigracion),
+    sexo = as_factor(sexo),
+    region = as_factor(region)
+  )
+
+
 table(datos$percepcion_inmigracion, datos$sexo)
 
 
 datos %>%
   group_by(percepcion_inmigracion) %>%
   summarise(promedio_edad = mean(edad, na.rm = TRUE))
-
 
 table(datos$percepcion_inmigracion, datos$region)
 ```
@@ -71,7 +82,6 @@ alpha(items_invertido)
 
 datos$indice_apertura <- rowMeans(items_invertido, na.rm = TRUE)
 
-
 hist(datos$indice_apertura,
      main = "Distribución del índice de apertura hacia la inmigración",
      xlab = "Índice de apertura (1 = cerrado, 4 = abierto)",
@@ -80,13 +90,12 @@ hist(datos$indice_apertura,
 
 ## Asociación del índice con otras variables
 
-\# Índice según percepción inmigración
-
 ```{r}
 
 datos %>%
   group_by(sexo) %>%
   summarise(prom_indice = mean(indice_apertura, na.rm = TRUE))
+
 
 datos %>%
   group_by(percepcion_inmigracion) %>%
