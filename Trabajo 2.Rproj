@@ -1,0 +1,16 @@
+Version: 1.0
+ProjectId: 6f37cf4f-11f1-4d1d-85f4-adaa5fce1940
+
+RestoreWorkspace: Default
+SaveWorkspace: Default
+AlwaysSaveHistory: Default
+
+EnableCodeIndexing: Yes
+UseSpacesForTab: Yes
+NumSpacesForTab: 2
+Encoding: UTF-8
+
+RnwWeave: Sweave
+LaTeX: pdfLaTeX
+
+ProjectName: Trabajo 2

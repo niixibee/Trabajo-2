@@ -1,0 +1,98 @@
+---
+title: "Percepciones sobre inmigración según edad, sexo y región en Chile (2020)"
+author: Fernanda duarte, Maite Rojas y Antonia Ríos.
+format: html
+editor: visual
+---
+
+## Introducción
+
+La percepción sobre la inmigración es un tema de alta relevancia en las sociedades contemporáneas, especialmente en países como Chile donde los flujos migratorios han crecido considerablemente en la última década. En este trabajo se analiza cómo varían las percepciones sobre inmigración según tres variables clave: edad, sexo y región de residencia. La fuente de datos utilizada es la Encuesta Latinobarómetro 2020, específicamente la sección correspondiente a Chile. Este estudio se basa en la variable P38, que pregunta si la inmigración beneficia o perjudica al país, y se busca identificar patrones de asociación entre esta percepción y las características sociodemográficas mencionadas.
+
+## Análisis descriptivo
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+datos <- readRDS("../procesamiento/chile_procesado.rds")
+
+
+table(datos$percepcion_inmigracion)
+
+
+ggplot(datos, aes(x = percepcion_inmigracion)) +
+  geom_bar(fill = "#5B9BD5") +
+  theme_minimal() +
+  labs(title = "Percepción sobre inmigración", x = "Percepción", y = "Frecuencia")
+
+
+table(datos$sexo)
+
+
+table(datos$region)
+
+
+hist(datos$edad, main = "Distribución de la edad", xlab = "Edad", col = "#F4A261")
+```
+
+## Asociación entre variables
+
+```{r}
+
+table(datos$percepcion_inmigracion, datos$sexo)
+
+
+datos %>%
+  group_by(percepcion_inmigracion) %>%
+  summarise(promedio_edad = mean(edad, na.rm = TRUE))
+
+
+table(datos$percepcion_inmigracion, datos$region)
+```
+
+## Construcción de índice de apertura hacia la inmigración
+
+```{r}
+library(psych)
+
+
+items <- datos %>% select(P37NA, P37NB, P37NC, P37ND)
+
+
+items <- mutate_all(items, as.numeric)
+
+
+items_invertido <- 5 - items
+
+
+alpha(items_invertido)
+
+
+datos$indice_apertura <- rowMeans(items_invertido, na.rm = TRUE)
+
+
+hist(datos$indice_apertura,
+     main = "Distribución del índice de apertura hacia la inmigración",
+     xlab = "Índice de apertura (1 = cerrado, 4 = abierto)",
+     col = "#5B9BD5")
+```
+
+## Asociación del índice con otras variables
+
+\# Índice según percepción inmigración
+
+```{r}
+
+datos %>%
+  group_by(sexo) %>%
+  summarise(prom_indice = mean(indice_apertura, na.rm = TRUE))
+
+datos %>%
+  group_by(percepcion_inmigracion) %>%
+  summarise(prom_indice = mean(indice_apertura, na.rm = TRUE))
+```
+
+## Conclusiones
+
+Los resultados muestran que existen diferencias relevantes en la percepción de la inmigración según sexo, edad y región. En particular, las personas de mayor edad tienden a tener una percepción más negativa, mientras que las más jóvenes presentan mayor apertura. También se observan diferencias por sexo, donde las mujeres tienden a tener posturas ligeramente más críticas hacia la inmigración. El índice de apertura, construido a partir de las preguntas P37N A–D, presenta una buena consistencia interna (según alfa de Cronbach) y permite evaluar de forma más completa las actitudes hacia distintos grupos de inmigrantes. Este análisis refuerza la importancia de considerar las características sociodemográficas al estudiar percepciones sociales en Chile.
