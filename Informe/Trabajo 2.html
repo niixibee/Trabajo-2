@@ -1,0 +1,2486 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Fernanda duarte, Maite Rojas y Antonia Ríos.">
+
+<title>Percepciones sobre inmigración según edad, sexo y región en Chile (2020)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Trabajo 2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Trabajo 2_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Trabajo 2_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Trabajo 2_files/libs/quarto-html/popper.min.js"></script>
+<script src="Trabajo 2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Trabajo 2_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Trabajo 2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Trabajo 2_files/libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Trabajo 2_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Trabajo 2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Trabajo 2_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Percepciones sobre inmigración según edad, sexo y región en Chile (2020)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Fernanda duarte, Maite Rojas y Antonia Ríos. </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>La percepción sobre la inmigración es un tema de alta relevancia en las sociedades contemporáneas, especialmente en países como Chile donde los flujos migratorios han crecido considerablemente en la última década. En este trabajo se analiza cómo varían las percepciones sobre inmigración según tres variables clave: edad, sexo y región de residencia. La fuente de datos utilizada es la Encuesta Latinobarómetro 2020, específicamente la sección correspondiente a Chile. Este estudio se basa en la variable P38, que pregunta si la inmigración beneficia o perjudica al país, y se busca identificar patrones de asociación entre esta percepción y las características sociodemográficas mencionadas.</p>
+</section>
+<section id="análisis-descriptivo" class="level2">
+<h2 class="anchored" data-anchor-id="análisis-descriptivo">Análisis descriptivo</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Adjuntando el paquete: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../procesamiento/datos_procesado.rds"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">as_factor</span>(datos<span class="sc">$</span>percepcion_inmigracion))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    No sabe / No contesta             No preguntada              No aplicable 
+                        0                         0                         0 
+              No contesta                   No sabe              Lo beneficia 
+                        0                         0                       147 
+             Lo perjudica Ni beneficia ni perjudica 
+                      501                       518 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as_factor</span>(percepcion_inmigracion))) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"#5B9BD5"</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Percepción sobre inmigración"</span>, <span class="at">x =</span> <span class="st">"Percepción"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Trabajo-2_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">as_factor</span>(datos<span class="sc">$</span>sexo))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+No sabe / No contesta         No preguntada          No aplicable 
+                    0                     0                     0 
+          No contesta               No sabe                Hombre 
+                    0                     0                   555 
+                Mujer 
+                  645 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">as_factor</span>(datos<span class="sc">$</span>region))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+                                          No documentado 
+                                                       0 
+                                           No preguntada 
+                                                       0 
+                                     AR: Capital Federal 
+                                                       0 
+                                       AR: Metropolitana 
+                                                       0 
+                                        AR: Cuyo/Mendoza 
+                                                       0 
+                                       AR: Cuyo/San Luis 
+                                                       0 
+                                       AR: Noreste/Chaco 
+                                                       0 
+                                  AR: Noreste/Corrientes 
+                                                       0 
+                                  AR: Noreste/Entre Ríos 
+                                                       0 
+                                     AR: Noreste/Formosa 
+                                                       0 
+                                    AR: Noreste/Misiones 
+                                                       0 
+                                  AR: Noroeste/Catamarca 
+                                                       0 
+                                      AR: Noroeste/Jujuy 
+                                                       0 
+                                   AR: Noroeste/La Rioja 
+                                                       0 
+                                      AR: Noroeste/Salta 
+                                                       0 
+                        AR: Noroeste/Santiago del Estero 
+                                                       0 
+                                    AR: Noroeste/Tucumán 
+                                                       0 
+                                    AR: Pampeana/Córdoba 
+                                                       0 
+                                   AR: Pampeana/La Pampa 
+                                                       0 
+                                   AR: Pampeana/Santa Fé 
+                                                       0 
+                                   AR: Patagónica/Chubut 
+                                                       0 
+                                  AR: Patagónica/Neuquén 
+                                                       0 
+                                AR: Patagónica/Río Negro 
+                                                       0 
+                               AR: Patagónica/Santa Cruz 
+                                                       0 
+                          AR: Patagónica/Tierra de Fuego 
+                                                       0 
+                                                BO: Beni 
+                                                       0 
+                                          BO: Chuquisaca 
+                                                       0 
+                                          BO: Cochabamba 
+                                                       0 
+                                              BO: La Paz 
+                                                       0 
+                                               BO: Oruro 
+                                                       0 
+                                               BO: Pando 
+                                                       0 
+                                              BO: Potosí 
+                                                       0 
+                                          BO: Santa Cruz 
+                                                       0 
+                                              BO: Tarija 
+                                                       0 
+                                               BR: Norte 
+                                                       0 
+                                            BR: Nordeste 
+                                                       0 
+                                             BR: Sudeste 
+                                                       0 
+                                                 BR: Sul 
+                                                       0 
+                                        BR: Centro-Oeste 
+                                                       0 
+                                CL: Región Metropolitana 
+                                                     487 
+                                  CL: I Región: Tarapacá 
+                                                      22 
+                              CL: II Región: Antofagasta 
+                                                      42 
+                                 CL: III Región: Atacama 
+                                                      21 
+                                 CL: IV Región: Coquimbo 
+                                                      51 
+                                CL: V Región: Valparaíso 
+                                                     122 
+            CL: VI Región: Libertador Bernardo O´Higgins 
+                                                      61 
+                                   CL: VII Región: Maule 
+                                                      70 
+                                CL: VIII Región: Bío-Bío 
+                                                     127 
+                             CL: IX Región: La Araucanía 
+                                                      66 
+                                 CL: X Región: Los Lagos 
+                                                      56 
+CL: XI Región: Aysén del General Carlos Ibáñez del Campo 
+                                                       7 
+       CL: XII Región: Magallanes y la Antártica Chilena 
+                                                      11 
+                                CL: XIV Región: Los Ríos 
+                                                      27 
+                       CL: XV Región: Arica y Parinacota 
+                                                      16 
+                                     CL: Región de Ñuble 
+                                                      14 
+                                              CO: Bogotá 
+                                                       0 
+                                    CO: Región Atlántica 
+                                                       0 
+                                     CO: Región Pacífica 
+                                                       0 
+                                      CO: Región Central 
+                                                       0 
+                                     CO: Región Oriental 
+                                                       0 
+                       CO: Región Territorios Nacionales 
+                                                       0 
+                                            CR: San José 
+                                                       0 
+                                            CR: Alajuela 
+                                                       0 
+                                             CR: Cartago 
+                                                       0 
+                                             CR: Heredia 
+                                                       0 
+                                          CR: Guanacaste 
+                                                       0 
+                                          CR: Puntarenas 
+                                                       0 
+                                               CR: Limón 
+                                                       0 
+                                   DO: Distrito Nacional 
+                                                       0 
+                                                DO: Azua 
+                                                       0 
+                                             DO: Baoruco 
+                                                       0 
+                                            DO: Barahona 
+                                                       0 
+                                              DO: Duarte 
+                                                       0 
+                                          DO: Elías Piña 
+                                                       0 
+                                            DO: El Seibo 
+                                                       0 
+                                           DO: Espaillat 
+                                                       0 
+                                          DO: Hato Mayor 
+                                                       0 
+                          DO: Hermanas Mirabal / Salcedo 
+                                                       0 
+                                       DO: Independencia 
+                                                       0 
+                                       DO: La Altagracia 
+                                                       0 
+                                           DO: La Romana 
+                                                       0 
+                                             DO: La Vega 
+                                                       0 
+                              DO: María Trinidad Sánchez 
+                                                       0 
+                                      DO: Monseñor Nouel 
+                                                       0 
+                                         DO: Montecristi 
+                                                       0 
+                                         DO: Monte Plata 
+                                                       0 
+                                             DO: Peravía 
+                                                       0 
+                                        DO: Puerto Plata 
+                                                       0 
+                                              DO: Samaná 
+                                                       0 
+                                     DO: Sánchez Ramírez 
+                                                       0 
+                                       DO: San Cristóbal 
+                                                       0 
+                                            DO: San Juan 
+                                                       0 
+                                DO: San Pedro de Macorís 
+                                                       0 
+                                            DO: Santiago 
+                                                       0 
+                             DO: Provincia Santo Domingo 
+                                                       0 
+                                            DO: Valverde 
+                                                       0 
+                                               EC: Azuay 
+                                                       0 
+                                             EC: Bolívar 
+                                                       0 
+                                          EC: Chimborazo 
+                                                       0 
+                                            EC: Cotopaxi 
+                                                       0 
+                                              EC: El Oro 
+                                                       0 
+                                          EC: Esmeraldas 
+                                                       0 
+                                              EC: Guayas 
+                                                       0 
+                                            EC: Imbabura 
+                                                       0 
+                                                EC: Loja 
+                                                       0 
+                                            EC: Los Ríos 
+                                                       0 
+                                              EC: Manabí 
+                                                       0 
+                                     EC: Morona Santiago 
+                                                       0 
+                                            EC: Orellana 
+                                                       0 
+                                           EC: Pichincha 
+                                                       0 
+                                         EC: Santa Elena 
+                                                       0 
+                       EC: Santo Domingo de los Sachilas 
+                                                       0 
+                                           EC: Sucumbios 
+                                                       0 
+                                          EC: Tungurahua 
+                                                       0 
+                               SV: Occidental/Ahuachapán 
+                                                       0 
+                                SV: Occidental/Santa Ana 
+                                                       0 
+                                SV: Occidental/Sonsonate 
+                                                       0 
+                                 SV: Central/La Libertad 
+                                                       0 
+                                SV: Central/Chalatenango 
+                                                       0 
+                                   SV: Central/Cuscatlán 
+                                                       0 
+                                SV: Central/San Salvador 
+                                                       0 
+                                      SV: Central/La Paz 
+                                                       0 
+                                     SV: Central/Cabañas 
+                                                       0 
+                                 SV: Central/San Vicente 
+                                                       0 
+                                   SV: Oriental/Usulután 
+                                                       0 
+                                 SV: Oriental/San Miguel 
+                                                       0 
+                                    SV: Oriental/Morazán 
+                                                       0 
+                                   SV: Oriental/La Unión 
+                                                       0 
+                             GT: Metropolitana/Guatemala 
+                                                       0 
+                                  GT: Norte/Alta Verapaz 
+                                                       0 
+                                  GT: Norte/Baja Verapaz 
+                                                       0 
+                              GT: Nororiental/Chiquimula 
+                                                       0 
+                             GT: Nororiental/El Progreso 
+                                                       0 
+                                  GT: Nororiental/Izabal 
+                                                       0 
+                                  GT: Nororiental/Zacapa 
+                                                       0 
+                                  GT: Suroriental/Jalapa 
+                                                       0 
+                                 GT: Suroriental/Jutiapa 
+                                                       0 
+                              GT: Suroriental/Santa Rosa 
+                                                       0 
+                               GT: Central/Chimaltenango 
+                                                       0 
+                                   GT: Central/Escuintla 
+                                                       0 
+                                GT: Central/Sacatepequez 
+                                                       0 
+                        GT: Suroccidental/Quetzaltenango 
+                                                       0 
+                            GT: Suroccidental/Retalhuleu 
+                                                       0 
+                            GT: Suroccidental/San Marcos 
+                                                       0 
+                                GT: Suroccidental/Solola 
+                                                       0 
+                         GT: Suroccidental/Suchitepéquez 
+                                                       0 
+                           GT: Suroccidental/Totonicapan 
+                                                       0 
+                                GT: Noroccidental/Quiché 
+                                                       0 
+                         GT: Noroccidental/Huehuetenango 
+                                                       0 
+                                   GT: Nororiental/Petén 
+                                                       0 
+                                           HO: Atlántida 
+                                                       0 
+                                           HO: Choluteca 
+                                                       0 
+                                               HO: Colón 
+                                                       0 
+                                           HO: Comayagua 
+                                                       0 
+                                               HO: Copán 
+                                                       0 
+                                              HO: Cortés 
+                                                       0 
+                                          HO: El Paraíso 
+                                                       0 
+                                   HO: Francisco Morazán 
+                                                       0 
+                                      HO: Gracias a Dios 
+                                                       0 
+                                            HO: Intibucá 
+                                                       0 
+                                              HO: La Paz 
+                                                       0 
+                                             HO: Lempira 
+                                                       0 
+                                          HO: Ocotepeque 
+                                                       0 
+                                             HO: Olancho 
+                                                       0 
+                                       HO: Santa Bárbara 
+                                                       0 
+                                               HO: Valle 
+                                                       0 
+                                                HO: Yoro 
+                                                       0 
+                               MX: Norte/Baja California 
+                                                       0 
+                                      MX: Norte/Coahuila 
+                                                       0 
+                                     MX: Norte/Chihuahua 
+                                                       0 
+                                       MX: Norte/Durango 
+                                                       0 
+                                    MX: Norte/Nuevo León 
+                                                       0 
+                               MX: Norte/San Luis Potosí 
+                                                       0 
+                                       MX: Norte/Sinaloa 
+                                                       0 
+                                        MX: Norte/Sonora 
+                                                       0 
+                                    MX: Norte/Tamaulipas 
+                                                       0 
+                                     MX: Norte/Zacatecas 
+                                                       0 
+                            MX: Occidente/Aguascalientes 
+                                                       0 
+                                    MX: Occidente/Colima 
+                                                       0 
+                                MX: Occidente/Guanajuato 
+                                                       0 
+                                   MX: Occidente/Jalisco 
+                                                       0 
+                                 MX: Occidente/Michoacán 
+                                                       0 
+                                   MX: Occidente/Nayarit 
+                                                       0 
+                                           MX: Centro/DF 
+                                                       0 
+                                      MX: Centro/Hidalgo 
+                                                       0 
+                                       MX: Centro/México 
+                                                       0 
+                                      MX: Centro/Morelos 
+                                                       0 
+                                       MX: Centro/Puebla 
+                                                       0 
+                                    MX: Centro/Querétaro 
+                                                       0 
+                                     MX: Centro/Tlaxcala 
+                                                       0 
+                                        MX: Sur/Campeche 
+                                                       0 
+                                         MX: Sur/Chiapas 
+                                                       0 
+                                        MX: Sur/Guerrero 
+                                                       0 
+                                          MX: Sur/Oaxaca 
+                                                       0 
+                                    MX: Sur/Quintana Roo 
+                                                       0 
+                                        MX: Sur/Veracruz 
+                                                       0 
+                                         MX: Sur/Yucatán 
+                                                       0 
+                                             NI: Managua 
+                                                       0 
+                                          NI: Chinandega 
+                                                       0 
+                                                NI: León 
+                                                       0 
+                                              NI: Masaya 
+                                                       0 
+                                             NI: Granada 
+                                                       0 
+                                              NI: Carazo 
+                                                       0 
+                                               NI: Rivas 
+                                                       0 
+                                           NI: Chontales 
+                                                       0 
+                                               NI: Boaco 
+                                                       0 
+                                           NI: Matagalpa 
+                                                       0 
+                                            NI: Jinotega 
+                                                       0 
+                                              NI: Estelí 
+                                                       0 
+                                       NI: Nueva Segovia 
+                                                       0 
+                                        NI: Río San Juan 
+                                                       0 
+                                             NI: R.A.A.S 
+                                                       0 
+                                             NI: R.A.A.N 
+                                                       0 
+                                              NI: Madriz 
+                                                       0 
+                                              PA: Panamá 
+                                                       0 
+                                               PA: Colón 
+                                                       0 
+                                      PA: Bocas del Toro 
+                                                       0 
+                                               PA: Coclé 
+                                                       0 
+                                            PA: Chiriquí 
+                                                       0 
+                                             PA: Herrera 
+                                                       0 
+                                          PA: Los Santos 
+                                                       0 
+                                            PA: Veraguas 
+                                                       0 
+                                              PA: Darién 
+                                                       0 
+                                 PA: Comarca Ngöbe Buglé 
+                                                       0 
+                                   PA: Comarca Guna Yala 
+                                                       0 
+                                            PY: Asunción 
+                                                       0 
+                                          PY: Concepción 
+                                                       0 
+                                           PY: San Pedro 
+                                                       0 
+                                          PY: Cordillera 
+                                                       0 
+                                              PY: Guairá 
+                                                       0 
+                                            PY: Caaguazú 
+                                                       0 
+                                             PY: Caazapá 
+                                                       0 
+                                              PY: Itapúa 
+                                                       0 
+                                            PY: Misiones 
+                                                       0 
+                                           PY: Paraguari 
+                                                       0 
+                                         PY: Alto Paraná 
+                                                       0 
+                                             PY: Central 
+                                                       0 
+                                            PY: Ñeembucú 
+                                                       0 
+                                             PY: Amambay 
+                                                       0 
+                                           PY: Canindeyú 
+                                                       0 
+                                    PY: Presidente Hayes 
+                                                       0 
+                                            PE: Amazonas 
+                                                       0 
+                                              PE: Áncash 
+                                                       0 
+                                            PE: Apurímac 
+                                                       0 
+                                            PE: Arequipa 
+                                                       0 
+                                            PE: Ayacucho 
+                                                       0 
+                                           PE: Cajamarca 
+                                                       0 
+                                               PE: Cusco 
+                                                       0 
+                                        PE: Huancavelica 
+                                                       0 
+                                             PE: Huánuco 
+                                                       0 
+                                                 PE: Ica 
+                                                       0 
+                                               PE: Junín 
+                                                       0 
+                                         PE: La Libertad 
+                                                       0 
+                                          PE: Lambayeque 
+                                                       0 
+                                                PE: Lima 
+                                                       0 
+                                              PE: Loreto 
+                                                       0 
+                                               PE: Piura 
+                                                       0 
+                                                PE: Puno 
+                                                       0 
+                                          PE: San Martín 
+                                                       0 
+                                               PE: Tacna 
+                                                       0 
+                                          UY: Montevideo 
+                                                       0 
+                                             UY: Artigas 
+                                                       0 
+                                           UY: Canelones 
+                                                       0 
+                                         UY: Cerro Largo 
+                                                       0 
+                                             UY: Colonia 
+                                                       0 
+                                             UY: Durazno 
+                                                       0 
+                                              UY: Flores 
+                                                       0 
+                                             UY: Florida 
+                                                       0 
+                                           UY: Lavalleja 
+                                                       0 
+                                           UY: Maldonado 
+                                                       0 
+                                            UY: Paysandú 
+                                                       0 
+                                           UY: Rio Negro 
+                                                       0 
+                                              UY: Rivera 
+                                                       0 
+                                               UY: Rocha 
+                                                       0 
+                                               UY: Salto 
+                                                       0 
+                                            UY: San José 
+                                                       0 
+                                             UY: Soriano 
+                                                       0 
+                                          UY: Tacuarembó 
+                                                       0 
+                                    VE: Distrito Capital 
+                                                       0 
+                                             VE: Central 
+                                                       0 
+                                   VE: Centro Occidental 
+                                                       0 
+                                           VE: Los Andes 
+                                                       0 
+                                          VE: Los Llanos 
+                                                       0 
+                                            VE: Oriental 
+                                                       0 
+                                          VE: Occidental 
+                                                       0 
+                                                 VE: Sur 
+                                                       0 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(datos<span class="sc">$</span>edad, <span class="at">main =</span> <span class="st">"Distribución de la edad"</span>, <span class="at">xlab =</span> <span class="st">"Edad"</span>, <span class="at">col =</span> <span class="st">"#F4A261"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Trabajo-2_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="asociación-entre-variables" class="level2">
+<h2 class="anchored" data-anchor-id="asociación-entre-variables">Asociación entre variables</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">percepcion_inmigracion =</span> <span class="fu">as_factor</span>(percepcion_inmigracion),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sexo =</span> <span class="fu">as_factor</span>(sexo),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">region =</span> <span class="fu">as_factor</span>(region)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos<span class="sc">$</span>percepcion_inmigracion, datos<span class="sc">$</span>sexo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                           
+                            No sabe / No contesta No preguntada No aplicable
+  No sabe / No contesta                         0             0            0
+  No preguntada                                 0             0            0
+  No aplicable                                  0             0            0
+  No contesta                                   0             0            0
+  No sabe                                       0             0            0
+  Lo beneficia                                  0             0            0
+  Lo perjudica                                  0             0            0
+  Ni beneficia ni perjudica                     0             0            0
+                           
+                            No contesta No sabe Hombre Mujer
+  No sabe / No contesta               0       0      0     0
+  No preguntada                       0       0      0     0
+  No aplicable                        0       0      0     0
+  No contesta                         0       0      0     0
+  No sabe                             0       0      0     0
+  Lo beneficia                        0       0     73    74
+  Lo perjudica                        0       0    235   266
+  Ni beneficia ni perjudica           0       0    237   281</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(percepcion_inmigracion) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">promedio_edad =</span> <span class="fu">mean</span>(edad, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  percepcion_inmigracion    promedio_edad
+  &lt;fct&gt;                             &lt;dbl&gt;
+1 Lo beneficia                       42.7
+2 Lo perjudica                       45.2
+3 Ni beneficia ni perjudica          44.3
+4 &lt;NA&gt;                               43.9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos<span class="sc">$</span>percepcion_inmigracion, datos<span class="sc">$</span>region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                           
+                            No documentado No preguntada AR: Capital Federal
+  No sabe / No contesta                  0             0                   0
+  No preguntada                          0             0                   0
+  No aplicable                           0             0                   0
+  No contesta                            0             0                   0
+  No sabe                                0             0                   0
+  Lo beneficia                           0             0                   0
+  Lo perjudica                           0             0                   0
+  Ni beneficia ni perjudica              0             0                   0
+                           
+                            AR: Metropolitana AR: Cuyo/Mendoza
+  No sabe / No contesta                     0                0
+  No preguntada                             0                0
+  No aplicable                              0                0
+  No contesta                               0                0
+  No sabe                                   0                0
+  Lo beneficia                              0                0
+  Lo perjudica                              0                0
+  Ni beneficia ni perjudica                 0                0
+                           
+                            AR: Cuyo/San Luis AR: Noreste/Chaco
+  No sabe / No contesta                     0                 0
+  No preguntada                             0                 0
+  No aplicable                              0                 0
+  No contesta                               0                 0
+  No sabe                                   0                 0
+  Lo beneficia                              0                 0
+  Lo perjudica                              0                 0
+  Ni beneficia ni perjudica                 0                 0
+                           
+                            AR: Noreste/Corrientes AR: Noreste/Entre Ríos
+  No sabe / No contesta                          0                      0
+  No preguntada                                  0                      0
+  No aplicable                                   0                      0
+  No contesta                                    0                      0
+  No sabe                                        0                      0
+  Lo beneficia                                   0                      0
+  Lo perjudica                                   0                      0
+  Ni beneficia ni perjudica                      0                      0
+                           
+                            AR: Noreste/Formosa AR: Noreste/Misiones
+  No sabe / No contesta                       0                    0
+  No preguntada                               0                    0
+  No aplicable                                0                    0
+  No contesta                                 0                    0
+  No sabe                                     0                    0
+  Lo beneficia                                0                    0
+  Lo perjudica                                0                    0
+  Ni beneficia ni perjudica                   0                    0
+                           
+                            AR: Noroeste/Catamarca AR: Noroeste/Jujuy
+  No sabe / No contesta                          0                  0
+  No preguntada                                  0                  0
+  No aplicable                                   0                  0
+  No contesta                                    0                  0
+  No sabe                                        0                  0
+  Lo beneficia                                   0                  0
+  Lo perjudica                                   0                  0
+  Ni beneficia ni perjudica                      0                  0
+                           
+                            AR: Noroeste/La Rioja AR: Noroeste/Salta
+  No sabe / No contesta                         0                  0
+  No preguntada                                 0                  0
+  No aplicable                                  0                  0
+  No contesta                                   0                  0
+  No sabe                                       0                  0
+  Lo beneficia                                  0                  0
+  Lo perjudica                                  0                  0
+  Ni beneficia ni perjudica                     0                  0
+                           
+                            AR: Noroeste/Santiago del Estero
+  No sabe / No contesta                                    0
+  No preguntada                                            0
+  No aplicable                                             0
+  No contesta                                              0
+  No sabe                                                  0
+  Lo beneficia                                             0
+  Lo perjudica                                             0
+  Ni beneficia ni perjudica                                0
+                           
+                            AR: Noroeste/Tucumán AR: Pampeana/Córdoba
+  No sabe / No contesta                        0                    0
+  No preguntada                                0                    0
+  No aplicable                                 0                    0
+  No contesta                                  0                    0
+  No sabe                                      0                    0
+  Lo beneficia                                 0                    0
+  Lo perjudica                                 0                    0
+  Ni beneficia ni perjudica                    0                    0
+                           
+                            AR: Pampeana/La Pampa AR: Pampeana/Santa Fé
+  No sabe / No contesta                         0                     0
+  No preguntada                                 0                     0
+  No aplicable                                  0                     0
+  No contesta                                   0                     0
+  No sabe                                       0                     0
+  Lo beneficia                                  0                     0
+  Lo perjudica                                  0                     0
+  Ni beneficia ni perjudica                     0                     0
+                           
+                            AR: Patagónica/Chubut AR: Patagónica/Neuquén
+  No sabe / No contesta                         0                      0
+  No preguntada                                 0                      0
+  No aplicable                                  0                      0
+  No contesta                                   0                      0
+  No sabe                                       0                      0
+  Lo beneficia                                  0                      0
+  Lo perjudica                                  0                      0
+  Ni beneficia ni perjudica                     0                      0
+                           
+                            AR: Patagónica/Río Negro AR: Patagónica/Santa Cruz
+  No sabe / No contesta                            0                         0
+  No preguntada                                    0                         0
+  No aplicable                                     0                         0
+  No contesta                                      0                         0
+  No sabe                                          0                         0
+  Lo beneficia                                     0                         0
+  Lo perjudica                                     0                         0
+  Ni beneficia ni perjudica                        0                         0
+                           
+                            AR: Patagónica/Tierra de Fuego BO: Beni
+  No sabe / No contesta                                  0        0
+  No preguntada                                          0        0
+  No aplicable                                           0        0
+  No contesta                                            0        0
+  No sabe                                                0        0
+  Lo beneficia                                           0        0
+  Lo perjudica                                           0        0
+  Ni beneficia ni perjudica                              0        0
+                           
+                            BO: Chuquisaca BO: Cochabamba BO: La Paz BO: Oruro
+  No sabe / No contesta                  0              0          0         0
+  No preguntada                          0              0          0         0
+  No aplicable                           0              0          0         0
+  No contesta                            0              0          0         0
+  No sabe                                0              0          0         0
+  Lo beneficia                           0              0          0         0
+  Lo perjudica                           0              0          0         0
+  Ni beneficia ni perjudica              0              0          0         0
+                           
+                            BO: Pando BO: Potosí BO: Santa Cruz BO: Tarija
+  No sabe / No contesta             0          0              0          0
+  No preguntada                     0          0              0          0
+  No aplicable                      0          0              0          0
+  No contesta                       0          0              0          0
+  No sabe                           0          0              0          0
+  Lo beneficia                      0          0              0          0
+  Lo perjudica                      0          0              0          0
+  Ni beneficia ni perjudica         0          0              0          0
+                           
+                            BR: Norte BR: Nordeste BR: Sudeste BR: Sul
+  No sabe / No contesta             0            0           0       0
+  No preguntada                     0            0           0       0
+  No aplicable                      0            0           0       0
+  No contesta                       0            0           0       0
+  No sabe                           0            0           0       0
+  Lo beneficia                      0            0           0       0
+  Lo perjudica                      0            0           0       0
+  Ni beneficia ni perjudica         0            0           0       0
+                           
+                            BR: Centro-Oeste CL: Región Metropolitana
+  No sabe / No contesta                    0                        0
+  No preguntada                            0                        0
+  No aplicable                             0                        0
+  No contesta                              0                        0
+  No sabe                                  0                        0
+  Lo beneficia                             0                       57
+  Lo perjudica                             0                      208
+  Ni beneficia ni perjudica                0                      209
+                           
+                            CL: I Región: Tarapacá CL: II Región: Antofagasta
+  No sabe / No contesta                          0                          0
+  No preguntada                                  0                          0
+  No aplicable                                   0                          0
+  No contesta                                    0                          0
+  No sabe                                        0                          0
+  Lo beneficia                                   0                          9
+  Lo perjudica                                   9                         18
+  Ni beneficia ni perjudica                     12                         13
+                           
+                            CL: III Región: Atacama CL: IV Región: Coquimbo
+  No sabe / No contesta                           0                       0
+  No preguntada                                   0                       0
+  No aplicable                                    0                       0
+  No contesta                                     0                       0
+  No sabe                                         0                       0
+  Lo beneficia                                    1                       0
+  Lo perjudica                                   17                      22
+  Ni beneficia ni perjudica                       3                      29
+                           
+                            CL: V Región: Valparaíso
+  No sabe / No contesta                            0
+  No preguntada                                    0
+  No aplicable                                     0
+  No contesta                                      0
+  No sabe                                          0
+  Lo beneficia                                    32
+  Lo perjudica                                    40
+  Ni beneficia ni perjudica                       47
+                           
+                            CL: VI Región: Libertador Bernardo O´Higgins
+  No sabe / No contesta                                                0
+  No preguntada                                                        0
+  No aplicable                                                         0
+  No contesta                                                          0
+  No sabe                                                              0
+  Lo beneficia                                                         7
+  Lo perjudica                                                        17
+  Ni beneficia ni perjudica                                           34
+                           
+                            CL: VII Región: Maule CL: VIII Región: Bío-Bío
+  No sabe / No contesta                         0                        0
+  No preguntada                                 0                        0
+  No aplicable                                  0                        0
+  No contesta                                   0                        0
+  No sabe                                       0                        0
+  Lo beneficia                                  6                        7
+  Lo perjudica                                 26                       52
+  Ni beneficia ni perjudica                    38                       63
+                           
+                            CL: IX Región: La Araucanía CL: X Región: Los Lagos
+  No sabe / No contesta                               0                       0
+  No preguntada                                       0                       0
+  No aplicable                                        0                       0
+  No contesta                                         0                       0
+  No sabe                                             0                       0
+  Lo beneficia                                        6                      13
+  Lo perjudica                                       37                      16
+  Ni beneficia ni perjudica                          22                      25
+                           
+                            CL: XI Región: Aysén del General Carlos Ibáñez del Campo
+  No sabe / No contesta                                                            0
+  No preguntada                                                                    0
+  No aplicable                                                                     0
+  No contesta                                                                      0
+  No sabe                                                                          0
+  Lo beneficia                                                                     1
+  Lo perjudica                                                                     0
+  Ni beneficia ni perjudica                                                        4
+                           
+                            CL: XII Región: Magallanes y la Antártica Chilena
+  No sabe / No contesta                                                     0
+  No preguntada                                                             0
+  No aplicable                                                              0
+  No contesta                                                               0
+  No sabe                                                                   0
+  Lo beneficia                                                              7
+  Lo perjudica                                                              1
+  Ni beneficia ni perjudica                                                 3
+                           
+                            CL: XIV Región: Los Ríos
+  No sabe / No contesta                            0
+  No preguntada                                    0
+  No aplicable                                     0
+  No contesta                                      0
+  No sabe                                          0
+  Lo beneficia                                     0
+  Lo perjudica                                    19
+  Ni beneficia ni perjudica                        6
+                           
+                            CL: XV Región: Arica y Parinacota
+  No sabe / No contesta                                     0
+  No preguntada                                             0
+  No aplicable                                              0
+  No contesta                                               0
+  No sabe                                                   0
+  Lo beneficia                                              1
+  Lo perjudica                                              8
+  Ni beneficia ni perjudica                                 7
+                           
+                            CL: Región de Ñuble CO: Bogotá CO: Región Atlántica
+  No sabe / No contesta                       0          0                    0
+  No preguntada                               0          0                    0
+  No aplicable                                0          0                    0
+  No contesta                                 0          0                    0
+  No sabe                                     0          0                    0
+  Lo beneficia                                0          0                    0
+  Lo perjudica                               11          0                    0
+  Ni beneficia ni perjudica                   3          0                    0
+                           
+                            CO: Región Pacífica CO: Región Central
+  No sabe / No contesta                       0                  0
+  No preguntada                               0                  0
+  No aplicable                                0                  0
+  No contesta                                 0                  0
+  No sabe                                     0                  0
+  Lo beneficia                                0                  0
+  Lo perjudica                                0                  0
+  Ni beneficia ni perjudica                   0                  0
+                           
+                            CO: Región Oriental
+  No sabe / No contesta                       0
+  No preguntada                               0
+  No aplicable                                0
+  No contesta                                 0
+  No sabe                                     0
+  Lo beneficia                                0
+  Lo perjudica                                0
+  Ni beneficia ni perjudica                   0
+                           
+                            CO: Región Territorios Nacionales CR: San José
+  No sabe / No contesta                                     0            0
+  No preguntada                                             0            0
+  No aplicable                                              0            0
+  No contesta                                               0            0
+  No sabe                                                   0            0
+  Lo beneficia                                              0            0
+  Lo perjudica                                              0            0
+  Ni beneficia ni perjudica                                 0            0
+                           
+                            CR: Alajuela CR: Cartago CR: Heredia CR: Guanacaste
+  No sabe / No contesta                0           0           0              0
+  No preguntada                        0           0           0              0
+  No aplicable                         0           0           0              0
+  No contesta                          0           0           0              0
+  No sabe                              0           0           0              0
+  Lo beneficia                         0           0           0              0
+  Lo perjudica                         0           0           0              0
+  Ni beneficia ni perjudica            0           0           0              0
+                           
+                            CR: Puntarenas CR: Limón DO: Distrito Nacional
+  No sabe / No contesta                  0         0                     0
+  No preguntada                          0         0                     0
+  No aplicable                           0         0                     0
+  No contesta                            0         0                     0
+  No sabe                                0         0                     0
+  Lo beneficia                           0         0                     0
+  Lo perjudica                           0         0                     0
+  Ni beneficia ni perjudica              0         0                     0
+                           
+                            DO: Azua DO: Baoruco DO: Barahona DO: Duarte
+  No sabe / No contesta            0           0            0          0
+  No preguntada                    0           0            0          0
+  No aplicable                     0           0            0          0
+  No contesta                      0           0            0          0
+  No sabe                          0           0            0          0
+  Lo beneficia                     0           0            0          0
+  Lo perjudica                     0           0            0          0
+  Ni beneficia ni perjudica        0           0            0          0
+                           
+                            DO: Elías Piña DO: El Seibo DO: Espaillat
+  No sabe / No contesta                  0            0             0
+  No preguntada                          0            0             0
+  No aplicable                           0            0             0
+  No contesta                            0            0             0
+  No sabe                                0            0             0
+  Lo beneficia                           0            0             0
+  Lo perjudica                           0            0             0
+  Ni beneficia ni perjudica              0            0             0
+                           
+                            DO: Hato Mayor DO: Hermanas Mirabal / Salcedo
+  No sabe / No contesta                  0                              0
+  No preguntada                          0                              0
+  No aplicable                           0                              0
+  No contesta                            0                              0
+  No sabe                                0                              0
+  Lo beneficia                           0                              0
+  Lo perjudica                           0                              0
+  Ni beneficia ni perjudica              0                              0
+                           
+                            DO: Independencia DO: La Altagracia DO: La Romana
+  No sabe / No contesta                     0                 0             0
+  No preguntada                             0                 0             0
+  No aplicable                              0                 0             0
+  No contesta                               0                 0             0
+  No sabe                                   0                 0             0
+  Lo beneficia                              0                 0             0
+  Lo perjudica                              0                 0             0
+  Ni beneficia ni perjudica                 0                 0             0
+                           
+                            DO: La Vega DO: María Trinidad Sánchez
+  No sabe / No contesta               0                          0
+  No preguntada                       0                          0
+  No aplicable                        0                          0
+  No contesta                         0                          0
+  No sabe                             0                          0
+  Lo beneficia                        0                          0
+  Lo perjudica                        0                          0
+  Ni beneficia ni perjudica           0                          0
+                           
+                            DO: Monseñor Nouel DO: Montecristi DO: Monte Plata
+  No sabe / No contesta                      0               0               0
+  No preguntada                              0               0               0
+  No aplicable                               0               0               0
+  No contesta                                0               0               0
+  No sabe                                    0               0               0
+  Lo beneficia                               0               0               0
+  Lo perjudica                               0               0               0
+  Ni beneficia ni perjudica                  0               0               0
+                           
+                            DO: Peravía DO: Puerto Plata DO: Samaná
+  No sabe / No contesta               0                0          0
+  No preguntada                       0                0          0
+  No aplicable                        0                0          0
+  No contesta                         0                0          0
+  No sabe                             0                0          0
+  Lo beneficia                        0                0          0
+  Lo perjudica                        0                0          0
+  Ni beneficia ni perjudica           0                0          0
+                           
+                            DO: Sánchez Ramírez DO: San Cristóbal DO: San Juan
+  No sabe / No contesta                       0                 0            0
+  No preguntada                               0                 0            0
+  No aplicable                                0                 0            0
+  No contesta                                 0                 0            0
+  No sabe                                     0                 0            0
+  Lo beneficia                                0                 0            0
+  Lo perjudica                                0                 0            0
+  Ni beneficia ni perjudica                   0                 0            0
+                           
+                            DO: San Pedro de Macorís DO: Santiago
+  No sabe / No contesta                            0            0
+  No preguntada                                    0            0
+  No aplicable                                     0            0
+  No contesta                                      0            0
+  No sabe                                          0            0
+  Lo beneficia                                     0            0
+  Lo perjudica                                     0            0
+  Ni beneficia ni perjudica                        0            0
+                           
+                            DO: Provincia Santo Domingo DO: Valverde EC: Azuay
+  No sabe / No contesta                               0            0         0
+  No preguntada                                       0            0         0
+  No aplicable                                        0            0         0
+  No contesta                                         0            0         0
+  No sabe                                             0            0         0
+  Lo beneficia                                        0            0         0
+  Lo perjudica                                        0            0         0
+  Ni beneficia ni perjudica                           0            0         0
+                           
+                            EC: Bolívar EC: Chimborazo EC: Cotopaxi EC: El Oro
+  No sabe / No contesta               0              0            0          0
+  No preguntada                       0              0            0          0
+  No aplicable                        0              0            0          0
+  No contesta                         0              0            0          0
+  No sabe                             0              0            0          0
+  Lo beneficia                        0              0            0          0
+  Lo perjudica                        0              0            0          0
+  Ni beneficia ni perjudica           0              0            0          0
+                           
+                            EC: Esmeraldas EC: Guayas EC: Imbabura EC: Loja
+  No sabe / No contesta                  0          0            0        0
+  No preguntada                          0          0            0        0
+  No aplicable                           0          0            0        0
+  No contesta                            0          0            0        0
+  No sabe                                0          0            0        0
+  Lo beneficia                           0          0            0        0
+  Lo perjudica                           0          0            0        0
+  Ni beneficia ni perjudica              0          0            0        0
+                           
+                            EC: Los Ríos EC: Manabí EC: Morona Santiago
+  No sabe / No contesta                0          0                   0
+  No preguntada                        0          0                   0
+  No aplicable                         0          0                   0
+  No contesta                          0          0                   0
+  No sabe                              0          0                   0
+  Lo beneficia                         0          0                   0
+  Lo perjudica                         0          0                   0
+  Ni beneficia ni perjudica            0          0                   0
+                           
+                            EC: Orellana EC: Pichincha EC: Santa Elena
+  No sabe / No contesta                0             0               0
+  No preguntada                        0             0               0
+  No aplicable                         0             0               0
+  No contesta                          0             0               0
+  No sabe                              0             0               0
+  Lo beneficia                         0             0               0
+  Lo perjudica                         0             0               0
+  Ni beneficia ni perjudica            0             0               0
+                           
+                            EC: Santo Domingo de los Sachilas EC: Sucumbios
+  No sabe / No contesta                                     0             0
+  No preguntada                                             0             0
+  No aplicable                                              0             0
+  No contesta                                               0             0
+  No sabe                                                   0             0
+  Lo beneficia                                              0             0
+  Lo perjudica                                              0             0
+  Ni beneficia ni perjudica                                 0             0
+                           
+                            EC: Tungurahua SV: Occidental/Ahuachapán
+  No sabe / No contesta                  0                         0
+  No preguntada                          0                         0
+  No aplicable                           0                         0
+  No contesta                            0                         0
+  No sabe                                0                         0
+  Lo beneficia                           0                         0
+  Lo perjudica                           0                         0
+  Ni beneficia ni perjudica              0                         0
+                           
+                            SV: Occidental/Santa Ana SV: Occidental/Sonsonate
+  No sabe / No contesta                            0                        0
+  No preguntada                                    0                        0
+  No aplicable                                     0                        0
+  No contesta                                      0                        0
+  No sabe                                          0                        0
+  Lo beneficia                                     0                        0
+  Lo perjudica                                     0                        0
+  Ni beneficia ni perjudica                        0                        0
+                           
+                            SV: Central/La Libertad SV: Central/Chalatenango
+  No sabe / No contesta                           0                        0
+  No preguntada                                   0                        0
+  No aplicable                                    0                        0
+  No contesta                                     0                        0
+  No sabe                                         0                        0
+  Lo beneficia                                    0                        0
+  Lo perjudica                                    0                        0
+  Ni beneficia ni perjudica                       0                        0
+                           
+                            SV: Central/Cuscatlán SV: Central/San Salvador
+  No sabe / No contesta                         0                        0
+  No preguntada                                 0                        0
+  No aplicable                                  0                        0
+  No contesta                                   0                        0
+  No sabe                                       0                        0
+  Lo beneficia                                  0                        0
+  Lo perjudica                                  0                        0
+  Ni beneficia ni perjudica                     0                        0
+                           
+                            SV: Central/La Paz SV: Central/Cabañas
+  No sabe / No contesta                      0                   0
+  No preguntada                              0                   0
+  No aplicable                               0                   0
+  No contesta                                0                   0
+  No sabe                                    0                   0
+  Lo beneficia                               0                   0
+  Lo perjudica                               0                   0
+  Ni beneficia ni perjudica                  0                   0
+                           
+                            SV: Central/San Vicente SV: Oriental/Usulután
+  No sabe / No contesta                           0                     0
+  No preguntada                                   0                     0
+  No aplicable                                    0                     0
+  No contesta                                     0                     0
+  No sabe                                         0                     0
+  Lo beneficia                                    0                     0
+  Lo perjudica                                    0                     0
+  Ni beneficia ni perjudica                       0                     0
+                           
+                            SV: Oriental/San Miguel SV: Oriental/Morazán
+  No sabe / No contesta                           0                    0
+  No preguntada                                   0                    0
+  No aplicable                                    0                    0
+  No contesta                                     0                    0
+  No sabe                                         0                    0
+  Lo beneficia                                    0                    0
+  Lo perjudica                                    0                    0
+  Ni beneficia ni perjudica                       0                    0
+                           
+                            SV: Oriental/La Unión GT: Metropolitana/Guatemala
+  No sabe / No contesta                         0                           0
+  No preguntada                                 0                           0
+  No aplicable                                  0                           0
+  No contesta                                   0                           0
+  No sabe                                       0                           0
+  Lo beneficia                                  0                           0
+  Lo perjudica                                  0                           0
+  Ni beneficia ni perjudica                     0                           0
+                           
+                            GT: Norte/Alta Verapaz GT: Norte/Baja Verapaz
+  No sabe / No contesta                          0                      0
+  No preguntada                                  0                      0
+  No aplicable                                   0                      0
+  No contesta                                    0                      0
+  No sabe                                        0                      0
+  Lo beneficia                                   0                      0
+  Lo perjudica                                   0                      0
+  Ni beneficia ni perjudica                      0                      0
+                           
+                            GT: Nororiental/Chiquimula
+  No sabe / No contesta                              0
+  No preguntada                                      0
+  No aplicable                                       0
+  No contesta                                        0
+  No sabe                                            0
+  Lo beneficia                                       0
+  Lo perjudica                                       0
+  Ni beneficia ni perjudica                          0
+                           
+                            GT: Nororiental/El Progreso GT: Nororiental/Izabal
+  No sabe / No contesta                               0                      0
+  No preguntada                                       0                      0
+  No aplicable                                        0                      0
+  No contesta                                         0                      0
+  No sabe                                             0                      0
+  Lo beneficia                                        0                      0
+  Lo perjudica                                        0                      0
+  Ni beneficia ni perjudica                           0                      0
+                           
+                            GT: Nororiental/Zacapa GT: Suroriental/Jalapa
+  No sabe / No contesta                          0                      0
+  No preguntada                                  0                      0
+  No aplicable                                   0                      0
+  No contesta                                    0                      0
+  No sabe                                        0                      0
+  Lo beneficia                                   0                      0
+  Lo perjudica                                   0                      0
+  Ni beneficia ni perjudica                      0                      0
+                           
+                            GT: Suroriental/Jutiapa GT: Suroriental/Santa Rosa
+  No sabe / No contesta                           0                          0
+  No preguntada                                   0                          0
+  No aplicable                                    0                          0
+  No contesta                                     0                          0
+  No sabe                                         0                          0
+  Lo beneficia                                    0                          0
+  Lo perjudica                                    0                          0
+  Ni beneficia ni perjudica                       0                          0
+                           
+                            GT: Central/Chimaltenango GT: Central/Escuintla
+  No sabe / No contesta                             0                     0
+  No preguntada                                     0                     0
+  No aplicable                                      0                     0
+  No contesta                                       0                     0
+  No sabe                                           0                     0
+  Lo beneficia                                      0                     0
+  Lo perjudica                                      0                     0
+  Ni beneficia ni perjudica                         0                     0
+                           
+                            GT: Central/Sacatepequez
+  No sabe / No contesta                            0
+  No preguntada                                    0
+  No aplicable                                     0
+  No contesta                                      0
+  No sabe                                          0
+  Lo beneficia                                     0
+  Lo perjudica                                     0
+  Ni beneficia ni perjudica                        0
+                           
+                            GT: Suroccidental/Quetzaltenango
+  No sabe / No contesta                                    0
+  No preguntada                                            0
+  No aplicable                                             0
+  No contesta                                              0
+  No sabe                                                  0
+  Lo beneficia                                             0
+  Lo perjudica                                             0
+  Ni beneficia ni perjudica                                0
+                           
+                            GT: Suroccidental/Retalhuleu
+  No sabe / No contesta                                0
+  No preguntada                                        0
+  No aplicable                                         0
+  No contesta                                          0
+  No sabe                                              0
+  Lo beneficia                                         0
+  Lo perjudica                                         0
+  Ni beneficia ni perjudica                            0
+                           
+                            GT: Suroccidental/San Marcos
+  No sabe / No contesta                                0
+  No preguntada                                        0
+  No aplicable                                         0
+  No contesta                                          0
+  No sabe                                              0
+  Lo beneficia                                         0
+  Lo perjudica                                         0
+  Ni beneficia ni perjudica                            0
+                           
+                            GT: Suroccidental/Solola
+  No sabe / No contesta                            0
+  No preguntada                                    0
+  No aplicable                                     0
+  No contesta                                      0
+  No sabe                                          0
+  Lo beneficia                                     0
+  Lo perjudica                                     0
+  Ni beneficia ni perjudica                        0
+                           
+                            GT: Suroccidental/Suchitepéquez
+  No sabe / No contesta                                   0
+  No preguntada                                           0
+  No aplicable                                            0
+  No contesta                                             0
+  No sabe                                                 0
+  Lo beneficia                                            0
+  Lo perjudica                                            0
+  Ni beneficia ni perjudica                               0
+                           
+                            GT: Suroccidental/Totonicapan
+  No sabe / No contesta                                 0
+  No preguntada                                         0
+  No aplicable                                          0
+  No contesta                                           0
+  No sabe                                               0
+  Lo beneficia                                          0
+  Lo perjudica                                          0
+  Ni beneficia ni perjudica                             0
+                           
+                            GT: Noroccidental/Quiché
+  No sabe / No contesta                            0
+  No preguntada                                    0
+  No aplicable                                     0
+  No contesta                                      0
+  No sabe                                          0
+  Lo beneficia                                     0
+  Lo perjudica                                     0
+  Ni beneficia ni perjudica                        0
+                           
+                            GT: Noroccidental/Huehuetenango
+  No sabe / No contesta                                   0
+  No preguntada                                           0
+  No aplicable                                            0
+  No contesta                                             0
+  No sabe                                                 0
+  Lo beneficia                                            0
+  Lo perjudica                                            0
+  Ni beneficia ni perjudica                               0
+                           
+                            GT: Nororiental/Petén HO: Atlántida HO: Choluteca
+  No sabe / No contesta                         0             0             0
+  No preguntada                                 0             0             0
+  No aplicable                                  0             0             0
+  No contesta                                   0             0             0
+  No sabe                                       0             0             0
+  Lo beneficia                                  0             0             0
+  Lo perjudica                                  0             0             0
+  Ni beneficia ni perjudica                     0             0             0
+                           
+                            HO: Colón HO: Comayagua HO: Copán HO: Cortés
+  No sabe / No contesta             0             0         0          0
+  No preguntada                     0             0         0          0
+  No aplicable                      0             0         0          0
+  No contesta                       0             0         0          0
+  No sabe                           0             0         0          0
+  Lo beneficia                      0             0         0          0
+  Lo perjudica                      0             0         0          0
+  Ni beneficia ni perjudica         0             0         0          0
+                           
+                            HO: El Paraíso HO: Francisco Morazán
+  No sabe / No contesta                  0                     0
+  No preguntada                          0                     0
+  No aplicable                           0                     0
+  No contesta                            0                     0
+  No sabe                                0                     0
+  Lo beneficia                           0                     0
+  Lo perjudica                           0                     0
+  Ni beneficia ni perjudica              0                     0
+                           
+                            HO: Gracias a Dios HO: Intibucá HO: La Paz
+  No sabe / No contesta                      0            0          0
+  No preguntada                              0            0          0
+  No aplicable                               0            0          0
+  No contesta                                0            0          0
+  No sabe                                    0            0          0
+  Lo beneficia                               0            0          0
+  Lo perjudica                               0            0          0
+  Ni beneficia ni perjudica                  0            0          0
+                           
+                            HO: Lempira HO: Ocotepeque HO: Olancho
+  No sabe / No contesta               0              0           0
+  No preguntada                       0              0           0
+  No aplicable                        0              0           0
+  No contesta                         0              0           0
+  No sabe                             0              0           0
+  Lo beneficia                        0              0           0
+  Lo perjudica                        0              0           0
+  Ni beneficia ni perjudica           0              0           0
+                           
+                            HO: Santa Bárbara HO: Valle HO: Yoro
+  No sabe / No contesta                     0         0        0
+  No preguntada                             0         0        0
+  No aplicable                              0         0        0
+  No contesta                               0         0        0
+  No sabe                                   0         0        0
+  Lo beneficia                              0         0        0
+  Lo perjudica                              0         0        0
+  Ni beneficia ni perjudica                 0         0        0
+                           
+                            MX: Norte/Baja California MX: Norte/Coahuila
+  No sabe / No contesta                             0                  0
+  No preguntada                                     0                  0
+  No aplicable                                      0                  0
+  No contesta                                       0                  0
+  No sabe                                           0                  0
+  Lo beneficia                                      0                  0
+  Lo perjudica                                      0                  0
+  Ni beneficia ni perjudica                         0                  0
+                           
+                            MX: Norte/Chihuahua MX: Norte/Durango
+  No sabe / No contesta                       0                 0
+  No preguntada                               0                 0
+  No aplicable                                0                 0
+  No contesta                                 0                 0
+  No sabe                                     0                 0
+  Lo beneficia                                0                 0
+  Lo perjudica                                0                 0
+  Ni beneficia ni perjudica                   0                 0
+                           
+                            MX: Norte/Nuevo León MX: Norte/San Luis Potosí
+  No sabe / No contesta                        0                         0
+  No preguntada                                0                         0
+  No aplicable                                 0                         0
+  No contesta                                  0                         0
+  No sabe                                      0                         0
+  Lo beneficia                                 0                         0
+  Lo perjudica                                 0                         0
+  Ni beneficia ni perjudica                    0                         0
+                           
+                            MX: Norte/Sinaloa MX: Norte/Sonora
+  No sabe / No contesta                     0                0
+  No preguntada                             0                0
+  No aplicable                              0                0
+  No contesta                               0                0
+  No sabe                                   0                0
+  Lo beneficia                              0                0
+  Lo perjudica                              0                0
+  Ni beneficia ni perjudica                 0                0
+                           
+                            MX: Norte/Tamaulipas MX: Norte/Zacatecas
+  No sabe / No contesta                        0                   0
+  No preguntada                                0                   0
+  No aplicable                                 0                   0
+  No contesta                                  0                   0
+  No sabe                                      0                   0
+  Lo beneficia                                 0                   0
+  Lo perjudica                                 0                   0
+  Ni beneficia ni perjudica                    0                   0
+                           
+                            MX: Occidente/Aguascalientes MX: Occidente/Colima
+  No sabe / No contesta                                0                    0
+  No preguntada                                        0                    0
+  No aplicable                                         0                    0
+  No contesta                                          0                    0
+  No sabe                                              0                    0
+  Lo beneficia                                         0                    0
+  Lo perjudica                                         0                    0
+  Ni beneficia ni perjudica                            0                    0
+                           
+                            MX: Occidente/Guanajuato MX: Occidente/Jalisco
+  No sabe / No contesta                            0                     0
+  No preguntada                                    0                     0
+  No aplicable                                     0                     0
+  No contesta                                      0                     0
+  No sabe                                          0                     0
+  Lo beneficia                                     0                     0
+  Lo perjudica                                     0                     0
+  Ni beneficia ni perjudica                        0                     0
+                           
+                            MX: Occidente/Michoacán MX: Occidente/Nayarit
+  No sabe / No contesta                           0                     0
+  No preguntada                                   0                     0
+  No aplicable                                    0                     0
+  No contesta                                     0                     0
+  No sabe                                         0                     0
+  Lo beneficia                                    0                     0
+  Lo perjudica                                    0                     0
+  Ni beneficia ni perjudica                       0                     0
+                           
+                            MX: Centro/DF MX: Centro/Hidalgo MX: Centro/México
+  No sabe / No contesta                 0                  0                 0
+  No preguntada                         0                  0                 0
+  No aplicable                          0                  0                 0
+  No contesta                           0                  0                 0
+  No sabe                               0                  0                 0
+  Lo beneficia                          0                  0                 0
+  Lo perjudica                          0                  0                 0
+  Ni beneficia ni perjudica             0                  0                 0
+                           
+                            MX: Centro/Morelos MX: Centro/Puebla
+  No sabe / No contesta                      0                 0
+  No preguntada                              0                 0
+  No aplicable                               0                 0
+  No contesta                                0                 0
+  No sabe                                    0                 0
+  Lo beneficia                               0                 0
+  Lo perjudica                               0                 0
+  Ni beneficia ni perjudica                  0                 0
+                           
+                            MX: Centro/Querétaro MX: Centro/Tlaxcala
+  No sabe / No contesta                        0                   0
+  No preguntada                                0                   0
+  No aplicable                                 0                   0
+  No contesta                                  0                   0
+  No sabe                                      0                   0
+  Lo beneficia                                 0                   0
+  Lo perjudica                                 0                   0
+  Ni beneficia ni perjudica                    0                   0
+                           
+                            MX: Sur/Campeche MX: Sur/Chiapas MX: Sur/Guerrero
+  No sabe / No contesta                    0               0                0
+  No preguntada                            0               0                0
+  No aplicable                             0               0                0
+  No contesta                              0               0                0
+  No sabe                                  0               0                0
+  Lo beneficia                             0               0                0
+  Lo perjudica                             0               0                0
+  Ni beneficia ni perjudica                0               0                0
+                           
+                            MX: Sur/Oaxaca MX: Sur/Quintana Roo
+  No sabe / No contesta                  0                    0
+  No preguntada                          0                    0
+  No aplicable                           0                    0
+  No contesta                            0                    0
+  No sabe                                0                    0
+  Lo beneficia                           0                    0
+  Lo perjudica                           0                    0
+  Ni beneficia ni perjudica              0                    0
+                           
+                            MX: Sur/Veracruz MX: Sur/Yucatán NI: Managua
+  No sabe / No contesta                    0               0           0
+  No preguntada                            0               0           0
+  No aplicable                             0               0           0
+  No contesta                              0               0           0
+  No sabe                                  0               0           0
+  Lo beneficia                             0               0           0
+  Lo perjudica                             0               0           0
+  Ni beneficia ni perjudica                0               0           0
+                           
+                            NI: Chinandega NI: León NI: Masaya NI: Granada
+  No sabe / No contesta                  0        0          0           0
+  No preguntada                          0        0          0           0
+  No aplicable                           0        0          0           0
+  No contesta                            0        0          0           0
+  No sabe                                0        0          0           0
+  Lo beneficia                           0        0          0           0
+  Lo perjudica                           0        0          0           0
+  Ni beneficia ni perjudica              0        0          0           0
+                           
+                            NI: Carazo NI: Rivas NI: Chontales NI: Boaco
+  No sabe / No contesta              0         0             0         0
+  No preguntada                      0         0             0         0
+  No aplicable                       0         0             0         0
+  No contesta                        0         0             0         0
+  No sabe                            0         0             0         0
+  Lo beneficia                       0         0             0         0
+  Lo perjudica                       0         0             0         0
+  Ni beneficia ni perjudica          0         0             0         0
+                           
+                            NI: Matagalpa NI: Jinotega NI: Estelí
+  No sabe / No contesta                 0            0          0
+  No preguntada                         0            0          0
+  No aplicable                          0            0          0
+  No contesta                           0            0          0
+  No sabe                               0            0          0
+  Lo beneficia                          0            0          0
+  Lo perjudica                          0            0          0
+  Ni beneficia ni perjudica             0            0          0
+                           
+                            NI: Nueva Segovia NI: Río San Juan NI: R.A.A.S
+  No sabe / No contesta                     0                0           0
+  No preguntada                             0                0           0
+  No aplicable                              0                0           0
+  No contesta                               0                0           0
+  No sabe                                   0                0           0
+  Lo beneficia                              0                0           0
+  Lo perjudica                              0                0           0
+  Ni beneficia ni perjudica                 0                0           0
+                           
+                            NI: R.A.A.N NI: Madriz PA: Panamá PA: Colón
+  No sabe / No contesta               0          0          0         0
+  No preguntada                       0          0          0         0
+  No aplicable                        0          0          0         0
+  No contesta                         0          0          0         0
+  No sabe                             0          0          0         0
+  Lo beneficia                        0          0          0         0
+  Lo perjudica                        0          0          0         0
+  Ni beneficia ni perjudica           0          0          0         0
+                           
+                            PA: Bocas del Toro PA: Coclé PA: Chiriquí
+  No sabe / No contesta                      0         0            0
+  No preguntada                              0         0            0
+  No aplicable                               0         0            0
+  No contesta                                0         0            0
+  No sabe                                    0         0            0
+  Lo beneficia                               0         0            0
+  Lo perjudica                               0         0            0
+  Ni beneficia ni perjudica                  0         0            0
+                           
+                            PA: Herrera PA: Los Santos PA: Veraguas PA: Darién
+  No sabe / No contesta               0              0            0          0
+  No preguntada                       0              0            0          0
+  No aplicable                        0              0            0          0
+  No contesta                         0              0            0          0
+  No sabe                             0              0            0          0
+  Lo beneficia                        0              0            0          0
+  Lo perjudica                        0              0            0          0
+  Ni beneficia ni perjudica           0              0            0          0
+                           
+                            PA: Comarca Ngöbe Buglé PA: Comarca Guna Yala
+  No sabe / No contesta                           0                     0
+  No preguntada                                   0                     0
+  No aplicable                                    0                     0
+  No contesta                                     0                     0
+  No sabe                                         0                     0
+  Lo beneficia                                    0                     0
+  Lo perjudica                                    0                     0
+  Ni beneficia ni perjudica                       0                     0
+                           
+                            PY: Asunción PY: Concepción PY: San Pedro
+  No sabe / No contesta                0              0             0
+  No preguntada                        0              0             0
+  No aplicable                         0              0             0
+  No contesta                          0              0             0
+  No sabe                              0              0             0
+  Lo beneficia                         0              0             0
+  Lo perjudica                         0              0             0
+  Ni beneficia ni perjudica            0              0             0
+                           
+                            PY: Cordillera PY: Guairá PY: Caaguazú PY: Caazapá
+  No sabe / No contesta                  0          0            0           0
+  No preguntada                          0          0            0           0
+  No aplicable                           0          0            0           0
+  No contesta                            0          0            0           0
+  No sabe                                0          0            0           0
+  Lo beneficia                           0          0            0           0
+  Lo perjudica                           0          0            0           0
+  Ni beneficia ni perjudica              0          0            0           0
+                           
+                            PY: Itapúa PY: Misiones PY: Paraguari
+  No sabe / No contesta              0            0             0
+  No preguntada                      0            0             0
+  No aplicable                       0            0             0
+  No contesta                        0            0             0
+  No sabe                            0            0             0
+  Lo beneficia                       0            0             0
+  Lo perjudica                       0            0             0
+  Ni beneficia ni perjudica          0            0             0
+                           
+                            PY: Alto Paraná PY: Central PY: Ñeembucú
+  No sabe / No contesta                   0           0            0
+  No preguntada                           0           0            0
+  No aplicable                            0           0            0
+  No contesta                             0           0            0
+  No sabe                                 0           0            0
+  Lo beneficia                            0           0            0
+  Lo perjudica                            0           0            0
+  Ni beneficia ni perjudica               0           0            0
+                           
+                            PY: Amambay PY: Canindeyú PY: Presidente Hayes
+  No sabe / No contesta               0             0                    0
+  No preguntada                       0             0                    0
+  No aplicable                        0             0                    0
+  No contesta                         0             0                    0
+  No sabe                             0             0                    0
+  Lo beneficia                        0             0                    0
+  Lo perjudica                        0             0                    0
+  Ni beneficia ni perjudica           0             0                    0
+                           
+                            PE: Amazonas PE: Áncash PE: Apurímac PE: Arequipa
+  No sabe / No contesta                0          0            0            0
+  No preguntada                        0          0            0            0
+  No aplicable                         0          0            0            0
+  No contesta                          0          0            0            0
+  No sabe                              0          0            0            0
+  Lo beneficia                         0          0            0            0
+  Lo perjudica                         0          0            0            0
+  Ni beneficia ni perjudica            0          0            0            0
+                           
+                            PE: Ayacucho PE: Cajamarca PE: Cusco
+  No sabe / No contesta                0             0         0
+  No preguntada                        0             0         0
+  No aplicable                         0             0         0
+  No contesta                          0             0         0
+  No sabe                              0             0         0
+  Lo beneficia                         0             0         0
+  Lo perjudica                         0             0         0
+  Ni beneficia ni perjudica            0             0         0
+                           
+                            PE: Huancavelica PE: Huánuco PE: Ica PE: Junín
+  No sabe / No contesta                    0           0       0         0
+  No preguntada                            0           0       0         0
+  No aplicable                             0           0       0         0
+  No contesta                              0           0       0         0
+  No sabe                                  0           0       0         0
+  Lo beneficia                             0           0       0         0
+  Lo perjudica                             0           0       0         0
+  Ni beneficia ni perjudica                0           0       0         0
+                           
+                            PE: La Libertad PE: Lambayeque PE: Lima PE: Loreto
+  No sabe / No contesta                   0              0        0          0
+  No preguntada                           0              0        0          0
+  No aplicable                            0              0        0          0
+  No contesta                             0              0        0          0
+  No sabe                                 0              0        0          0
+  Lo beneficia                            0              0        0          0
+  Lo perjudica                            0              0        0          0
+  Ni beneficia ni perjudica               0              0        0          0
+                           
+                            PE: Piura PE: Puno PE: San Martín PE: Tacna
+  No sabe / No contesta             0        0              0         0
+  No preguntada                     0        0              0         0
+  No aplicable                      0        0              0         0
+  No contesta                       0        0              0         0
+  No sabe                           0        0              0         0
+  Lo beneficia                      0        0              0         0
+  Lo perjudica                      0        0              0         0
+  Ni beneficia ni perjudica         0        0              0         0
+                           
+                            UY: Montevideo UY: Artigas UY: Canelones
+  No sabe / No contesta                  0           0             0
+  No preguntada                          0           0             0
+  No aplicable                           0           0             0
+  No contesta                            0           0             0
+  No sabe                                0           0             0
+  Lo beneficia                           0           0             0
+  Lo perjudica                           0           0             0
+  Ni beneficia ni perjudica              0           0             0
+                           
+                            UY: Cerro Largo UY: Colonia UY: Durazno UY: Flores
+  No sabe / No contesta                   0           0           0          0
+  No preguntada                           0           0           0          0
+  No aplicable                            0           0           0          0
+  No contesta                             0           0           0          0
+  No sabe                                 0           0           0          0
+  Lo beneficia                            0           0           0          0
+  Lo perjudica                            0           0           0          0
+  Ni beneficia ni perjudica               0           0           0          0
+                           
+                            UY: Florida UY: Lavalleja UY: Maldonado
+  No sabe / No contesta               0             0             0
+  No preguntada                       0             0             0
+  No aplicable                        0             0             0
+  No contesta                         0             0             0
+  No sabe                             0             0             0
+  Lo beneficia                        0             0             0
+  Lo perjudica                        0             0             0
+  Ni beneficia ni perjudica           0             0             0
+                           
+                            UY: Paysandú UY: Rio Negro UY: Rivera UY: Rocha
+  No sabe / No contesta                0             0          0         0
+  No preguntada                        0             0          0         0
+  No aplicable                         0             0          0         0
+  No contesta                          0             0          0         0
+  No sabe                              0             0          0         0
+  Lo beneficia                         0             0          0         0
+  Lo perjudica                         0             0          0         0
+  Ni beneficia ni perjudica            0             0          0         0
+                           
+                            UY: Salto UY: San José UY: Soriano UY: Tacuarembó
+  No sabe / No contesta             0            0           0              0
+  No preguntada                     0            0           0              0
+  No aplicable                      0            0           0              0
+  No contesta                       0            0           0              0
+  No sabe                           0            0           0              0
+  Lo beneficia                      0            0           0              0
+  Lo perjudica                      0            0           0              0
+  Ni beneficia ni perjudica         0            0           0              0
+                           
+                            VE: Distrito Capital VE: Central
+  No sabe / No contesta                        0           0
+  No preguntada                                0           0
+  No aplicable                                 0           0
+  No contesta                                  0           0
+  No sabe                                      0           0
+  Lo beneficia                                 0           0
+  Lo perjudica                                 0           0
+  Ni beneficia ni perjudica                    0           0
+                           
+                            VE: Centro Occidental VE: Los Andes VE: Los Llanos
+  No sabe / No contesta                         0             0              0
+  No preguntada                                 0             0              0
+  No aplicable                                  0             0              0
+  No contesta                                   0             0              0
+  No sabe                                       0             0              0
+  Lo beneficia                                  0             0              0
+  Lo perjudica                                  0             0              0
+  Ni beneficia ni perjudica                     0             0              0
+                           
+                            VE: Oriental VE: Occidental VE: Sur
+  No sabe / No contesta                0              0       0
+  No preguntada                        0              0       0
+  No aplicable                         0              0       0
+  No contesta                          0              0       0
+  No sabe                              0              0       0
+  Lo beneficia                         0              0       0
+  Lo perjudica                         0              0       0
+  Ni beneficia ni perjudica            0              0       0</code></pre>
+</div>
+</div>
+</section>
+<section id="construcción-de-índice-de-apertura-hacia-la-inmigración" class="level2">
+<h2 class="anchored" data-anchor-id="construcción-de-índice-de-apertura-hacia-la-inmigración">Construcción de índice de apertura hacia la inmigración</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Adjuntando el paquete: 'psych'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:ggplot2':
+
+    %+%, alpha</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span> <span class="fu">select</span>(P37NA, P37NB, P37NC, P37ND)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> <span class="fu">mutate_all</span>(items, as.numeric)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>items_invertido <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="sc">-</span> items</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">alpha</span>(items_invertido)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Reliability analysis   
+Call: alpha(x = items_invertido)
+
+  raw_alpha std.alpha G6(smc) average_r S/N    ase mean   sd median_r
+       0.9       0.9    0.88      0.69 8.8 0.0049  2.3 0.68     0.71
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.89   0.9  0.91
+Duhachek  0.89   0.9  0.91
+
+ Reliability if an item is dropped:
+      raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r med.r
+P37NA      0.89      0.89    0.85      0.73 8.0   0.0056 0.0023  0.75
+P37NB      0.85      0.85    0.80      0.65 5.6   0.0076 0.0095  0.63
+P37NC      0.86      0.86    0.81      0.66 5.9   0.0074 0.0093  0.67
+P37ND      0.88      0.88    0.84      0.71 7.5   0.0060 0.0050  0.75
+
+ Item statistics 
+         n raw.r std.r r.cor r.drop mean   sd
+P37NA 1031  0.84  0.84  0.77   0.72  2.5 0.76
+P37NB 1073  0.91  0.91  0.88   0.83  2.4 0.76
+P37NC 1070  0.90  0.90  0.86   0.81  2.2 0.77
+P37ND 1088  0.86  0.85  0.79   0.74  2.2 0.78
+
+Non missing response frequency for each item
+         1    2    3    4 miss
+P37NA 0.10 0.37 0.47 0.06 0.14
+P37NB 0.12 0.43 0.40 0.05 0.11
+P37NC 0.19 0.48 0.30 0.03 0.11
+P37ND 0.21 0.45 0.31 0.03 0.09</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>indice_apertura <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(items_invertido, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(datos<span class="sc">$</span>indice_apertura,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Distribución del índice de apertura hacia la inmigración"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Índice de apertura (1 = cerrado, 4 = abierto)"</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"#5B9BD5"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Trabajo-2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="asociación-del-índice-con-otras-variables" class="level2">
+<h2 class="anchored" data-anchor-id="asociación-del-índice-con-otras-variables">Asociación del índice con otras variables</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sexo) <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">prom_indice =</span> <span class="fu">mean</span>(indice_apertura, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  sexo   prom_indice
+  &lt;fct&gt;        &lt;dbl&gt;
+1 Hombre        2.29
+2 Mujer         2.30</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(percepcion_inmigracion) <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">prom_indice =</span> <span class="fu">mean</span>(indice_apertura, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  percepcion_inmigracion    prom_indice
+  &lt;fct&gt;                           &lt;dbl&gt;
+1 Lo beneficia                     2.97
+2 Lo perjudica                     1.93
+3 Ni beneficia ni perjudica        2.46
+4 &lt;NA&gt;                             2.58</code></pre>
+</div>
+</div>
+</section>
+<section id="conclusiones" class="level2">
+<h2 class="anchored" data-anchor-id="conclusiones">Conclusiones</h2>
+<p>Los resultados muestran que existen diferencias relevantes en la percepción de la inmigración según sexo, edad y región. En particular, las personas de mayor edad tienden a tener una percepción más negativa, mientras que las más jóvenes presentan mayor apertura. También se observan diferencias por sexo, donde las mujeres tienden a tener posturas ligeramente más críticas hacia la inmigración. El índice de apertura, construido a partir de las preguntas P37N A–D, presenta una buena consistencia interna (según alfa de Cronbach) y permite evaluar de forma más completa las actitudes hacia distintos grupos de inmigrantes. Este análisis refuerza la importancia de considerar las características sociodemográficas al estudiar percepciones sociales en Chile.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
